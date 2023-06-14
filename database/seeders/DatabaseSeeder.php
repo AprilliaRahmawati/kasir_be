@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             TransactionSeeder::class
         ]);
 
-        
+
         $this->call([
             DetailTransaction::class
         ]);

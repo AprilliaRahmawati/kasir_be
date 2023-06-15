@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\DetailTransaction;
 use Illuminate\Database\Seeder;
+use App\Models\DetailTransaction;
+use Database\Factories\DetailTransactionFactory;
 
 class DetailTransactionSeeder extends Seeder
 {
@@ -14,6 +15,17 @@ class DetailTransactionSeeder extends Seeder
      */
     public function run()
     {
-        DetailTransaction::factory()->count(10)->create();
+        $transactions = \App\Models\Transaction::pluck('id');
+        $products = \App\Models\Product::pluck('id');
+
+        foreach ($transactions as $transactionId) {
+            foreach ($products as $productId) {
+                DetailTransactionFactory::new()
+                    ->withTransaction($transactionId)
+                    ->withProduct($productId)
+                    ->create();
+            }
+        }
     }
 }
+

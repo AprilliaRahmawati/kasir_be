@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         return response()->json([
             'status' => true,
-            'data' => Product::all(),
+            'data' => Product::orderBy('created_at','DESC')->get(),
             'message' => 'Success'
         ]);
     }

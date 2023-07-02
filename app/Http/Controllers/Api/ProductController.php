@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailTransaction;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,11 @@ class ProductController extends Controller
 
     public function delete($id)
     {
+        DetailTransaction::where('product_id', $id)->delete();
+        $product = Product::destroy($id);
         return response()->json([
             'status' => true,
-            'data' => Product::destroy($id),
+            'data' => $product,
             'message' => 'Success'
         ]);
     }

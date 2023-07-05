@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\DetailTransactionController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,6 +30,7 @@ Route::delete('/product/{id}',[ProductController::class,'delete']);
 Route::post('/product', [ProductController::class, 'store']);
 Route::put('/product/{id}', [ProductController::class, 'update']);
 
+
 Route::get('/transactions', [TransactionController::class, 'index']);
 Route::post('/transactions', [TransactionController::class, 'store']);
 Route::get('/transactions/{id}', [TransactionController::class, 'show']);
@@ -41,6 +43,7 @@ Route::get('/detail-transactions/{id}', [DetailTransactionController::class, 'sh
 Route::post('/detail-transactions', [DetailTransactionController::class, 'store']);
 Route::put('/detail-transactions/{id}', [DetailTransactionController::class, 'update']);
 Route::delete('/detail-transactions/{id}', [DetailTransactionController::class, 'destroy']);
+
 
 
 

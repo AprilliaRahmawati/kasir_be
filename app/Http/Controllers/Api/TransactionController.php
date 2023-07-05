@@ -57,7 +57,7 @@ class TransactionController extends Controller
 
     public function show($id)
     {
-        $transaction = Transaction::find($id);
+        $transaction = Transaction::with('detail_transaksi')->where('id', $id)->first();
 
         if (!$transaction) {
             return response()->json([
@@ -126,4 +126,3 @@ class TransactionController extends Controller
         ]);
     }
 }
-

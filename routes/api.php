@@ -37,7 +37,6 @@ Route::get('/transactions/{id}', [TransactionController::class, 'show']);
 Route::put('/transactions/{id}', [TransactionController::class, 'update']);
 Route::delete('/transactions/{id}', [TransactionController::class, 'destroy']);
 
-
 Route::get('/detail-transactions', [DetailTransactionController::class, 'index']);
 Route::get('/detail-transactions/{id}', [DetailTransactionController::class, 'show']);
 Route::post('/detail-transactions', [DetailTransactionController::class, 'store']);

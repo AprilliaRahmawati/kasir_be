@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailTransaction;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -39,6 +40,8 @@ class TransactionController extends Controller
             'kembali' => $request->kembali,
         ]);
 
+
+
           // Mengurangi stok produk berdasarkan item transaksi
           foreach ($request->items as $item) {
             $product = Product::where('barcode', $item['barcode'])->first();
@@ -46,8 +49,16 @@ class TransactionController extends Controller
                 $product->stock -= $item['qty'];
                 $product->save();
             }
+
+            DetailTransaction::create([
+                'transaction_id' => $transaction->id,
+                'product_id' => $item['id'],
+                'price' => $item['price'],
+                'quantity' => $item['qty'],
+                'total' => $item['total']
+            ]);
         }
-        
+
         return response()->json([
             'status' => true,
             'data' => $transaction,
